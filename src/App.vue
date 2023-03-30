@@ -24,7 +24,8 @@
       </label>
     </div>
     <div class="m-5">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" :disabled="!file || !language" @click="processFile">Process File</button>
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" :disabled="!file || !language"
+        @click="processFile">Process File</button>
     </div>
   </div>
 </template>
@@ -60,18 +61,17 @@ export default {
 
         const outputData = json.map((row) => {
           return {
-            UserName: row.Email.trim(),
-            Name: row.Name.replace(/ .*/, '').trim(),
-            Surname: row.Name.indexOf(" ") !== -1 ? row.Name.split(' ').slice(1).join(' ') : "Missing last name",
-            EmailAddress: row.Email.trim(),
-            PhoneNumber: this.cleanPhoneNo(row.PhoneNumber),
-            Password: this.location.toLocaleLowerCase(),
-            AssignedRoleNames: "Citizen",
-            AssignedCaseworker: (this.location.toLocaleLowerCase() === "odense") ? this.getCaseworker() : "",
-            AssignedCourseflow: this.parseCourse(row.Course, this.location, this.language),
-            CourseflowStartdate: this.getNextMonday(this.language),
-
-            SendActivationMail: "True",
+            UserName: { v: row.Email.trim(), t: 's' },
+            Name: { v: row.Name.replace(/ .*/, '').trim(), t: 's' },
+            Surname: { v: row.Name.indexOf(" ") !== -1 ? row.Name.split(' ').slice(1).join(' ') : "Missing last name", t: 's' },
+            EmailAddress: { v: row.Email.trim(), t: 's' },
+            PhoneNumber: { v: this.cleanPhoneNo(row.PhoneNumber), t: 's' },
+            Password: { v: this.location.toLocaleLowerCase(), t: 's' },
+            AssignedRoleNames: { v: "Citizen", t: 's' },
+            AssignedCaseworker: { v: (this.location.toLocaleLowerCase() === "odense") ? this.getCaseworker() : "", t: 's' },
+            AssignedCourseflow: { v: this.parseCourse(row.Course, this.location, this.language), t: 's' },
+            CourseflowStartdate: { v: String(this.getNextMonday(this.language)), t: 's' },
+            SendActivationMail: { v: "True", t: 's' }
           };
         });
 
@@ -97,11 +97,11 @@ export default {
       if (language === 'english') {
         month = month < 10 ? '0' + month : month;
         day = day < 10 ? '0' + day : day;
-        return `${month}-${day}-${year}`;
+        return " " + `${month}-${day}-${year}`;
       } else {
         month = month < 10 ? '0' + month : month;
         day = day < 10 ? '0' + day : day;
-        return `${day}-${month}-${year}`;
+        return " " + `${day}-${month}-${year}`;
       }
     },
     getCaseworker() {
@@ -109,7 +109,7 @@ export default {
       return this.oddOrEven % 2 ? 'hmv@ballisager.com' : 'aso@ballisager.com'
     },
     parseCourse(course, location, language) {
-      if (location.toLocaleLowerCase() === "odense" ) {
+      if (location.toLocaleLowerCase() === "odense") {
         if (language.toLocaleLowerCase() === "english") {
           return "Odense_ENG_jun22"
         } else {
@@ -117,7 +117,7 @@ export default {
             return "Odense-ufaglaert_DK_sep22"
           } else {
             return "Odense_DK_jun22"
-          }          
+          }
         }
       } else if (location.toLocaleLowerCase() === "gentofte") {
         if (language.toLocaleLowerCase() === "english") {
@@ -130,7 +130,7 @@ export default {
           } else if (course.includes('mittend')) {
             return "Gentofte_Dim_sep22"
           }
-        }          
+        }
       } else if (location.toLocaleLowerCase() === "rksk") {
         return "RKSK_Deltid_sep22"
       }
@@ -142,7 +142,7 @@ export default {
       if (phoneStr.includes("+45")) {
         phoneStr = phoneStr.replace("+45", "")
       }
-      return (phoneStr.replace(/\D/g,''))
+      return (phoneStr.replace(/\D/g, ''))
     }
   },
   watch: {
