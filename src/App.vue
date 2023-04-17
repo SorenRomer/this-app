@@ -38,10 +38,10 @@
           For Odense kan Course være tomt, med mindre det er en ufaglært. Er det det, vil det stå i kolonnen 'Noter' på Excel-filen fra Odense. I så fald skal der bare stå 'ufaglært' i Course-kolonnen.
         </p>
         <p class="mb-5">
-          For Odense kan Course være tomt, med mindre det er en ufaglært. Er det det, vil det stå i kolonnen 'Noter' på Excel-filen fra Odense. I så fald skal der bare stå 'ufaglært' i Course-kolonnen.
+          Gentofte har følgende fire kurser: 'Øvrige/generel', 'Dimittend', 'Leder/specialister' og 'Engelsk'. 'Engelsk' skal håndteres i en separat fil, jf. Step 4. De øvrige kan bare copy-pastes direkte fra mail'en fra Gentofte. Husk dog at tjekke for eventuelle tastefejl. Det er forekommet enkelte gange, at de har skrevet det forkert, og så vil AssignedCourseflow-feltet i output-filen være tomt.
         </p>
         <p class="mb-5">
-          Hvis du foretrækker at bruge en skabelon, så kan du downloade en <a class="text-blue-500 hover:text-blue-800 decoration-inherit underline" href="/assets/xlsxtemplate.xlsx" target="_blank">her</a>.
+          Hvis du foretrækker at bruge en skabelon, så kan du downloade en <a class="text-blue-500 hover:text-blue-800 decoration-inherit underline" href="/assets/xlsxtemplate.xlsx" download>her</a>.
         </p>        
       </div>
       <hr class="my-10">
@@ -95,8 +95,13 @@
       </div>
       <hr class="my-10">
       <div class="mb-20">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:bg-slate-300 disabled:text-slate-100" :disabled="!file || !language"
-          @click="processFile">Processer Fil</button>
+        <button  
+          class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-5 text-lg rounded disabled:bg-slate-300 disabled:text-slate-100 uppercase" 
+          :disabled="!file || !language"
+          @click="processFile"
+        >
+          Processer Fil
+        </button>
       </div>
     </div>
   </div>
