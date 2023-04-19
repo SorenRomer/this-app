@@ -46,7 +46,7 @@
       </div>
       <hr class="my-10">
       <div class="my-10">   
-        <h3 class="mb-5 text-lg"><b>Step 2:</b> Upload din kildefil</h3>     
+        <h3 class="mb-5 text-lg"><b>Step 2:</b> Vælg din kildefil</h3>     
         <input 
           type="file" 
           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"          
@@ -60,7 +60,7 @@
         <div class="description mb-5">
           <h3 class="mb-5 text-lg"><b>Step 3:</b> Vælg jobcenter</h3>
           <p>
-            Nu skal du vælge hvilket jobcenter du importerer for. Dette afgør hvilke module der bliver output'et.
+            Nu skal du vælge hvilket jobcenter du importerer for. Dette afgør hvilke forløb der bliver tildelt borgerne i output-filen.
           </p>
         </div>
         <select v-model="location" class="rounded bg-white border-neutral-300 border py-2 pl-4 pr-6 text-neutral-600">
